@@ -10,7 +10,8 @@ main = do
   config <- c'friso_new_config
   configPath <- newCString "/etc/friso/friso.ini"
   init_result <- c'friso_init_from_ifile friso config configPath
-  if init_result /= 1 then
+  if init_result /= 1 then do
+    c'friso_free friso
     exitFailure
   else do
     task <- c'friso_new_task
