@@ -12,6 +12,11 @@ Low level Haskell binding for friso.
 
 * Bindings.Friso.Raw
 * Bindings.Friso.Raw.FrisoAPI
+* Bindings.Friso.Util
+
+## cbits
+
+For convenience FFI implementation.
 
 ## dependent libraries
 
