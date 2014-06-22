@@ -2,6 +2,7 @@ import Bindings.Friso.Raw
 import Bindings.Friso.Util
 import Foreign.C.String
 import System.Exit
+
 main :: IO ()
 main = do
   -- init friso
