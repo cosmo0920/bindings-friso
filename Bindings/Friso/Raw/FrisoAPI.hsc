@@ -12,25 +12,25 @@ import Foreign.Ptr
 {- typedef unsigned int uint_t; -}
 #synonym_t uint_t , CUInt
 {- typedef char * fstring; -}
-#synonym_t fstring , CChar
+#synonym_t fstring , CString
 {- typedef struct {
             fstring buffer; uint_t length; uint_t allocs;
         } string_buffer_entry; -}
 #starttype string_buffer_entry
-#field buffer , CChar
+#field buffer , CString
 #field length , CUInt
 #field allocs , CUInt
 #stoptype
 {- typedef string_buffer_entry * string_buffer_t; -}
 #synonym_t string_buffer_t , <string_buffer_entry>
 #ccall new_string_buffer_with_opacity , CUInt -> IO (Ptr <string_buffer_entry>)
-#ccall new_string_buffer_with_string , CChar -> IO (Ptr <string_buffer_entry>)
-#ccall string_buffer_append , Ptr <string_buffer_entry> -> CChar -> IO ()
-#ccall string_buffer_append_char , Ptr <string_buffer_entry> -> CChar -> IO ()
-#ccall string_buffer_insert , (Ptr <string_buffer_entry>) -> CUInt -> CChar -> IO ()
-#ccall string_buffer_remove , Ptr <string_buffer_entry> -> CUInt -> CUInt -> IO CChar
+#ccall new_string_buffer_with_string , CString -> IO (Ptr <string_buffer_entry>)
+#ccall string_buffer_append , Ptr <string_buffer_entry> -> CString -> IO ()
+#ccall string_buffer_append_char , Ptr <string_buffer_entry> -> CString -> IO ()
+#ccall string_buffer_insert , (Ptr <string_buffer_entry>) -> CUInt -> CString -> IO ()
+#ccall string_buffer_remove , Ptr <string_buffer_entry> -> CUInt -> CUInt -> IO CString
 #ccall string_buffer_trim , Ptr <string_buffer_entry> -> IO (Ptr <string_buffer_entry>)
-#ccall string_buffer_devote , Ptr <string_buffer_entry> -> IO CChar
+#ccall string_buffer_devote , Ptr <string_buffer_entry> -> IO CString
 #ccall string_buffer_clear , Ptr <string_buffer_entry> -> IO ()
 #ccall free_string_buffer , Ptr <string_buffer_entry> -> IO ()
 {- typedef struct {
@@ -41,20 +41,20 @@ import Foreign.Ptr
             uint_t idx;
         } string_split_entry; -}
 #starttype string_split_entry
-#field source , CChar
+#field source , CString
 #field srcLen , CUInt
-#field delimiter , CChar
+#field delimiter , CString
 #field delLen , CUInt
 #field idx , CUInt
 #stoptype
 {- typedef string_split_entry * string_split_t; -}
 #synonym_t string_split_t , <string_split_entry>
-#ccall new_string_split , CChar -> CChar -> IO (Ptr <string_split_entry>)
-#ccall string_split_reset , Ptr <string_split_entry> -> CChar -> CChar -> IO ()
-#ccall string_split_set_source , Ptr <string_split_entry> -> CChar -> IO ()
-#ccall string_split_set_delimiter , Ptr <string_split_entry> -> CChar -> IO ()
+#ccall new_string_split , CString -> CString -> IO (Ptr <string_split_entry>)
+#ccall string_split_reset , Ptr <string_split_entry> -> CString -> CString -> IO ()
+#ccall string_split_set_source , Ptr <string_split_entry> -> CString -> IO ()
+#ccall string_split_set_delimiter , Ptr <string_split_entry> -> CString -> IO ()
 #ccall free_string_split , Ptr <string_split_entry> -> IO ()
-#ccall string_split_next , Ptr <string_split_entry> -> CChar -> IO CChar
+#ccall string_split_next , Ptr <string_split_entry> -> CString -> IO CString
 {- typedef struct {
             void * * items; uint_t allocs; uint_t length;
         } friso_array_entry; -}
@@ -115,7 +115,7 @@ import Foreign.Ptr
     fstring _key; void * _val; struct hash_entry * _next;
 }; -}
 #starttype struct hash_entry
-#field _key , CChar
+#field _key , CString
 #field _val , Ptr ()
 #field _next , Ptr <struct hash_entry>
 #stoptype
@@ -142,7 +142,7 @@ import Foreign.Ptr
 #synonym_t friso_hash_t , <friso_hash_cdt>
 #ccall new_hash_table , IO (Ptr <friso_hash_cdt>)
 #ccall free_hash_table , Ptr <friso_hash_cdt> -> <fhash_callback_fn_t> -> IO ()
-#ccall hash_put_mapping , Ptr <friso_hash_cdt> -> CChar -> Ptr () -> IO ()
-#ccall hash_exist_mapping , Ptr <friso_hash_cdt> -> CChar -> IO CInt
-#ccall hash_get_value , Ptr <friso_hash_cdt> -> CChar -> IO (Ptr ())
-#ccall hash_remove_mapping , Ptr <friso_hash_cdt> -> CChar -> IO (Ptr <struct hash_entry>)
+#ccall hash_put_mapping , Ptr <friso_hash_cdt> -> CString -> Ptr () -> IO ()
+#ccall hash_exist_mapping , Ptr <friso_hash_cdt> -> CString -> IO CInt
+#ccall hash_get_value , Ptr <friso_hash_cdt> -> CString -> IO (Ptr ())
+#ccall hash_remove_mapping , Ptr <friso_hash_cdt> -> CString -> IO (Ptr <struct hash_entry>)
