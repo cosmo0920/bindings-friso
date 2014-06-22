@@ -3,8 +3,9 @@
 void friso_do_word(friso_t friso, friso_config_t config, friso_task_t task)
 {
   while ( ( friso_next( friso, config, task ) ) != NULL ) {
-    printf("%s \n", task->hits->word );
+    printf("%s ", task->hits->word );
   }
+  printf("\n");
 }
 
 /* for debug */
