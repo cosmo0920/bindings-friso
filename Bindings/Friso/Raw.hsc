@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -fno-warn-unused-imports #-}
+module Bindings.Friso.Raw where
 #include <bindings.dsl.h>
 #include <friso/friso.h>
-module Bindings.Friso.Raw where
 import Foreign.Ptr
 #strict_import
 
