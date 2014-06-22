@@ -26,7 +26,7 @@ library
   default-extensions:  GeneralizedNewtypeDeriving
                        ForeignFunctionInterface
                        CPP
-  -- pkgconfig-depends:   friso >= 1.6.0
+  extra-libraries: friso
 
 source-repository head
   type: git
