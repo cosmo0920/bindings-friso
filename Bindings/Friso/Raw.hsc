@@ -60,7 +60,7 @@ import Bindings.Friso.Raw.FrisoAPI
 #field type , CUChar
 #field ctrlMask , CUChar
 #field offset , CUInt
-#field word , CChar
+#field word , CString
 #field syn , <friso_array_entry>
 #field pos , <friso_array_entry>
 #field fre , CUInt
@@ -116,7 +116,7 @@ import Bindings.Friso.Raw.FrisoAPI
 #field st_minl , CUShort
 #field nthreshold , CUInt
 #field mode , <friso_mode_t>
-#array_field kpuncs , CChar
+#array_field kpuncs , CString
 #stoptype
 {- typedef friso_config_entry * friso_config_t; -}
 #synonym_t friso_config_t , <friso_config_entry>
@@ -132,9 +132,9 @@ import Bindings.Friso.Raw.FrisoAPI
 #field type , CUChar
 #field length , CUChar
 #field rlen , CUChar
-#field pos , CChar
+#field pos , CString
 #field offset , CInt
-#array_field word , CChar
+#array_field word , CString
 #stoptype
 {- typedef friso_hits_entry * friso_hits_t; -}
 #synonym_t friso_hits_t , <friso_hits_entry>
@@ -151,7 +151,7 @@ import Bindings.Friso.Raw.FrisoAPI
             char buffer[7];
         } friso_task_entry; -}
 #starttype friso_task_entry
-#field text , CChar
+#field text , CString
 #field idx , CUInt
 #field length , CUInt
 #field bytes , CUInt
@@ -160,30 +160,30 @@ import Bindings.Friso.Raw.FrisoAPI
 #field pool , <friso_link_entry>
 #field sbuf , <string_buffer_entry>
 #field hits , <friso_hits_entry>
-#array_field buffer , CChar
+#array_field buffer , CString
 #stoptype
 {- typedef friso_task_entry * friso_task_t; -}
 #synonym_t friso_task_t , <friso_task_entry>
 #ccall friso_new , IO (Ptr <friso_entry>)
-#ccall friso_init_from_ifile , Ptr <friso_entry> -> Ptr <friso_config_entry> -> CChar -> IO CInt
+#ccall friso_init_from_ifile , Ptr <friso_entry> -> Ptr <friso_config_entry> -> CString -> IO CInt
 #ccall friso_free , Ptr <friso_entry> -> IO ()
 #ccall friso_new_config , IO (Ptr <friso_config_entry>)
 #ccall friso_init_config , Ptr <friso_config_entry> -> IO ()
 #ccall friso_new_task , IO (Ptr <friso_task_entry>)
 #ccall friso_free_task , Ptr <friso_task_entry> -> IO ()
 #ccall friso_new_hits , IO (Ptr <friso_hits_entry>)
-#ccall friso_set_text , Ptr <friso_task_entry> -> CChar -> IO ()
+#ccall friso_set_text , Ptr <friso_task_entry> -> CString -> IO ()
 #ccall friso_next , Ptr <friso_entry> -> Ptr <friso_config_entry> -> Ptr <friso_task_entry> -> IO (Ptr <friso_hits_entry>)
 #ccall friso_dic_new , IO (Ptr <friso_hash_cdt>)
--- #ccall file_get_line , CChar -> Ptr <struct _IO_FILE> -> IO CChar
+-- #ccall file_get_line , CString -> Ptr <struct _IO_FILE> -> IO CString
 #ccall friso_dic_free , Ptr <friso_hash_cdt> -> IO ()
-#ccall new_lex_entry , CChar -> Ptr <friso_array_entry> -> CUInt -> CUInt -> CUInt -> IO (Ptr <lex_entry_cdt>)
+#ccall new_lex_entry , CString -> Ptr <friso_array_entry> -> CUInt -> CUInt -> CUInt -> IO (Ptr <lex_entry_cdt>)
 #ccall free_lex_entry , Ptr <lex_entry_cdt> -> IO ()
-#ccall friso_dic_load , Ptr <friso_entry> -> Ptr <friso_config_entry> -> Ptr <friso_lex_t> -> CChar -> CUInt -> IO ()
-#ccall friso_dic_load_from_ifile , Ptr <friso_entry> -> Ptr <friso_config_entry> -> CChar -> CUInt -> IO ()
-#ccall friso_dic_add , Ptr <friso_hash_cdt> -> Ptr <friso_lex_t> -> CChar -> Ptr <friso_array_entry> -> IO ()
-#ccall friso_dic_add_with_fre , Ptr <friso_hash_cdt> -> Ptr <friso_lex_t> -> CChar -> Ptr <friso_array_entry> -> CUInt -> IO ()
-#ccall friso_dic_match , Ptr <friso_hash_cdt> -> Ptr <friso_lex_t> -> CChar -> IO CInt
-#ccall friso_dic_get , Ptr <friso_hash_cdt> -> Ptr <friso_lex_t> -> CChar -> IO (Ptr <lex_entry_cdt>)
+#ccall friso_dic_load , Ptr <friso_entry> -> Ptr <friso_config_entry> -> Ptr <friso_lex_t> -> CString -> CUInt -> IO ()
+#ccall friso_dic_load_from_ifile , Ptr <friso_entry> -> Ptr <friso_config_entry> -> CString -> CUInt -> IO ()
+#ccall friso_dic_add , Ptr <friso_hash_cdt> -> Ptr <friso_lex_t> -> CString -> Ptr <friso_array_entry> -> IO ()
+#ccall friso_dic_add_with_fre , Ptr <friso_hash_cdt> -> Ptr <friso_lex_t> -> CString -> Ptr <friso_array_entry> -> CUInt -> IO ()
+#ccall friso_dic_match , Ptr <friso_hash_cdt> -> Ptr <friso_lex_t> -> CString -> IO CInt
+#ccall friso_dic_get , Ptr <friso_hash_cdt> -> Ptr <friso_lex_t> -> CString -> IO (Ptr <lex_entry_cdt>)
 #ccall friso_spec_dic_size , Ptr <friso_hash_cdt> -> Ptr <friso_lex_t> -> IO CUInt
 #ccall friso_all_dic_size , Ptr <friso_hash_cdt> -> IO CUInt
