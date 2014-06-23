@@ -3,6 +3,27 @@ import Bindings.Friso.Util
 import Foreign.C.String
 import System.Exit
 import Control.Monad
+import Options.Applicative
+import Data.Monoid
+
+data App = App { iniFile :: String }
+  deriving Show
+
+runWithOption :: App -> IO String
+runWithOption opts = do
+  putStrLn ("InitWithFile: " ++ iniFile opts)
+  return (iniFile opts)
+
+optParse :: IO String
+optParse = do
+  let parser = App <$> strOption
+                       ( short 'i'
+                      <> long "init"
+                      <> metavar "INITFILE"
+                      <> help "specify friso.ini path")
+      opts = info parser mempty
+  ini <- execParser opts >>= runWithOption
+  return ini
 
 main :: IO ()
 main = do
@@ -12,7 +33,8 @@ main = do
   config <- c'friso_new_config
 
   -- init with config
-  configPath <- newCString "/etc/friso/friso.ini"
+  ini <- optParse
+  configPath <- newCString ini
   init_result <- c'friso_init_from_ifile friso config configPath
   if init_result /= 1 then do
     -- when it cannot initialize, abort.
@@ -21,7 +43,7 @@ main = do
   else do
     -- new friso task
     task <- c'friso_new_task
-    forever $ do
+    _ <- forever $ do
       putStrLn "binding-friso>"
       line <- getLine
       when (line == "quit" || line == "q") $ do

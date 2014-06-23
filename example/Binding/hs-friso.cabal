@@ -15,12 +15,13 @@ build-type:            Simple
 -- extra-source-files:
 cabal-version:         >=1.10
 
-executable example
+executable hs-friso
   main-is:             hs-friso.hs
   -- other-modules:
   -- other-extensions:
-  build-depends:       base           >= 4.5 && < 5
-                     , Bindings-friso >= 0.1
+  build-depends:       base                 >= 4.5 && < 5
+                     , optparse-applicative >= 0.9 && < 1.0
+                     , Bindings-friso       >= 0.1
   -- hs-source-dirs:
   default-language:    Haskell2010
   ghc-options:         -Wall
