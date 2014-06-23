@@ -26,6 +26,8 @@ main = do
       line <- getLine
       when (line == "quit" || line == "q") $ do
         putStrLn "quit"
+        c'friso_free_task task
+        c'friso_free friso
         exitSuccess
       -- input to tokenize text
       text <- newCString line
