@@ -1,6 +1,8 @@
 Binding-friso
 ===
 
+[![Build Status](https://travis-ci.org/cosmo0920/bindings-friso.svg?branch=master)](https://travis-ci.org/cosmo0920/bindings-friso)
+
 Low level Haskell binding for friso.
 
 ## dependencies
