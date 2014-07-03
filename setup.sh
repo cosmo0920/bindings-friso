@@ -3,6 +3,7 @@ unzip friso-1.6.0-src-lib-dict.zip
 cd friso-1.6.0/src
 make
 sudo make install
+cd ..
 sudo mkdir /etc/friso
 sudo cp friso.ini /etc/friso
 sudo mkdir /usr/share/friso
