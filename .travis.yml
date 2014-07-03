@@ -1,0 +1,8 @@
+language: haskell
+
+install:
+  - bash setup.sh
+  - cabal install --only-dependencies
+
+script:
+  - cabal build
