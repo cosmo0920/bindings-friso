@@ -22,7 +22,7 @@ Install [friso](https://code.google.com/p/friso/) before you install `bindings-f
 And then,
 
 ```bash
-$ cabal install bindins-friso
+$ cabal install bindings-friso
 ```
 
 ## cbits
